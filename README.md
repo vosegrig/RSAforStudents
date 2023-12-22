@@ -105,3 +105,12 @@ Using the RSA algorithm, it is possible to encrypt messages represented as a ser
 # Check Example
 
 In my example, the public key is represented as the pair (250483, 31), and the private key is the pair (250483, 32191). The encrypted message for 123456 is 133240.
+
+## References
+en.wikipedia.org/wiki/RSA
+en.wikipedia.org/wiki/Integer_factorization
+en.wikipedia.org/wiki/Euler%27s_totient_function
+en.wikipedia.org/wiki/Euclidean_algorithm
+en.wikipedia.org/wiki/Modular_arithmetic
+en.wikipedia.org/wiki/Extended_Euclidean_algorithm
+en.wikipedia.org/wiki/Exponentiation_by_squaring
