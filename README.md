@@ -1,6 +1,6 @@
 When I was learning programming, I was always annoyed by solving uninteresting tasks during practical exercises. In this repository, I address the task of implementing RSA encryption and decryption in the MIT Scheme language. For various reasons discussed, the implementation cannot be used for cryptographic information protection; it is solely for educational purposes.
 
-# Key generation involves finding prime numbers.
+## Key generation involves finding prime numbers.
 
 RSA belongs to asymmetric encryption algorithms: if an open key is used for encryption, a private key is used for decryption, and vice versa. The first property allows anyone to encrypt a message with the public key for the owner of the private key, thus ensuring its confidentiality. The second property allows the key owner to encrypt the message hash with the private key, so that anyone can decrypt the encrypted hash, compare it with the message hash, and determine whether the message has been modified.  
 
@@ -35,7 +35,7 @@ The product of the found prime numbers is the first element of both the public a
 (define n (* p q))
 ```
 
-# Key Generation — Finding a Mutually Prime Number
+## Key Generation — Finding a Mutually Prime Number
 
 To compute the second elements of the public and private keys, the value phi (φ) is utilized, equal to Euler's totient function, calculated on n. Euler's totient function of x is the count of natural numbers less than x that are coprime to x. For n, this count is equal to the product of (p-1) and (q-1).
 
@@ -60,7 +60,7 @@ The second element of the public key is chosen as a random number e in the range
 ```
 To find the greatest common divisor, the Euclidean algorithm can be used.
 
-# Key Generation — Operations in the Ring of Residues
+## Key Generation — Operations in the Ring of Residues
 
 One of the objects studied in number theory is the ring of residues. The ring of residues modulo k consists of integers from 0 to k-1 with operations of addition and multiplication. Addition in the ring of residues (a + b mod k) differs from addition in the group of integers in that if the result of the addition becomes greater than k, then k is subtracted from it, bringing the result back into the ring. Intuitively, the ring is obtained from the interval by connecting its ends.
 
@@ -82,7 +82,7 @@ The second element of the public key should be a number d such that its product 
 )
 (define d (MultInverseModN e fi))
 ```
-# Encryption and Decryption
+## Encryption and Decryption
 
 Using the RSA algorithm, it is possible to encrypt messages represented as a series of numbers \(M\) within the range from 0 to \(n-1\). Encryption involves raising \(M\) to the power of \(e\) in the ring of residues modulo \(n\), while decryption involves raising it to the power of \(d\). Thanks to the associativity of multiplication, we can exponentiate \(x\) in \(log(x)\) operations.
 
@@ -102,7 +102,7 @@ Using the RSA algorithm, it is possible to encrypt messages represented as a ser
   )
 ```
 
-# Check Example
+## Check Example
 
 In my example, the public key is represented as the pair (250483, 31), and the private key is the pair (250483, 32191). The encrypted message for 123456 is 133240.
 
