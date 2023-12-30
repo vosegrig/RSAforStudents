@@ -246,3 +246,101 @@ $ openssl asn1parse -inform pem -in private-enc.pem
    D08AA276732666D4C349196940BFE869DA909EC03A8E25B23339EE50453CB5F81400B1380CA46AF0FC012CA55F322C1C
    5806E5D76D4CD8308B8FDFE
 ```
+## OpenSSL and RSA Keys
+Another way to view the private key in OpenSSL is by using the `rsa` module. While the `asn1parse` module is a general-purpose ASN.1 syntax parser, the `rsa` module recognizes the structure of an RSA key and can correctly display the field names.
+```
+$ openssl rsa -in private.pem -noout -text
+Private-Key: (2048 bit)
+modulus:
+    00:b2:f5:fd:3f:9f:09:17:11:2c:e4:2f:8b:f8:7e:
+    d6:76:e1:52:58:be:44:3f:36:de:af:b0:b6:9b:de:
+    24:96:b4:95:ea:ad:1b:01:ca:d8:42:71:b0:14:e9:
+    6f:79:38:6c:63:6d:34:85:16:da:74:a6:8a:8c:70:
+    fb:a8:82:87:0c:47:b4:21:8d:8f:49:18:6d:df:72:
+    72:7b:9d:80:c2:19:11:c3:e3:37:c6:e4:07:ff:b4:
+    7c:2f:27:67:b0:d1:64:d8:a1:e9:af:95:f6:48:1b:
+    f8:d9:ed:fb:2e:39:04:b2:52:92:68:c4:60:25:6f:
+    af:d0:a6:77:d2:98:98:f1:0b:1d:15:12:8a:69:58:
+    39:fc:08:ed:d5:84:e8:33:56:15:b1:d1:d7:27:7b:
+    e6:5c:53:2d:ca:92:dd:c7:05:03:74:86:8b:11:7e:
+    a9:15:49:14:ef:92:92:b8:44:3f:13:69:6e:4f:ad:
+    50:de:d6:bd:90:e5:a6:f7:ed:33:be:2e:ce:31:c6:
+    dd:7a:42:53:ee:6c:dc:56:78:7d:dd:1d:5c:d7:76:
+    61:40:22:db:87:d0:3b:b2:2f:23:28:5b:5a:31:67:
+    af:8d:ac:ab:be:a4:00:04:47:13:37:d3:78:1e:8c:
+    5c:ca:0e:a5:e2:77:99:b5:10:e4:ef:93:8c:61:ca:
+    a6:0d
+publicExponent: 65537 (0x10001)
+privateExponent:
+    00:b2:42:55:00:0a:6a:03:90:18:27:33:35:39:51:
+    1e:4f:4c:21:ba:43:cb:b7:2b:f0:a5:10:60:d4:e1:
+    71:90:ac:50:a8:71:c5:75:03:98:66:96:d7:cd:fc:
+    b8:0d:07:26:ef:e2:d7:6d:ba:55:df:dc:04:25:e0:
+    64:cc:75:38:10:03:5c:6a:0f:97:aa:37:ab:39:e7:
+    c6:21:5b:c1:e5:95:13:1d:0c:37:82:e5:a1:12:13:
+    b5:9f:42:a1:06:7f:8c:f4:3c:53:89:92:d6:be:fd:
+    1d:e3:f6:29:3c:e1:8e:cc:11:73:c4:e7:d6:dd:73:
+    62:ad:73:23:e7:a2:18:b5:ff:b0:f2:45:eb:79:63:
+    27:cc:87:49:3e:dd:13:42:34:ed:5f:3b:14:a4:c4:
+    d9:23:74:59:7f:64:a6:d3:cb:2c:10:f0:cd:2d:57:
+    e9:9f:58:c8:d2:8f:20:49:d1:43:3c:c4:bd:67:70:
+    17:ad:1b:dd:1c:83:cf:b8:fb:7e:8c:8f:dc:f0:b4:
+    fb:77:de:7b:82:85:74:9c:ed:fb:fd:68:78:f7:f7:
+    93:00:73:f0:f4:2a:dd:cb:a8:38:5d:7e:d0:5c:df:
+    ca:a2:a2:ba:75:76:01:72:3a:96:20:1f:ec:cc:2e:
+    65:c6:5e:14:f6:5f:1d:34:d6:ec:df:e3:f8:54:01:
+    80:01
+prime1:
+    00:e1:d1:63:89:bf:6e:ff:7a:e4:4f:65:71:06:ed:
+    81:c8:1a:48:b5:fb:35:6f:83:dd:4a:22:9e:86:54:
+    bd:c0:36:71:6b:bd:9d:46:df:d1:49:81:32:54:50:
+    54:95:8a:ca:5c:fd:a7:09:d9:7c:c8:c6:a9:e9:20:
+    3d:05:f7:b9:d4:5e:68:5a:19:a5:f5:82:67:fc:b1:
+    7f:cf:50:2b:32:cf:ed:b9:4c:ae:a5:8e:e5:f6:3e:
+    ba:5f:33:d0:99:46:c8:65:21:32:34:44:10:d3:d6:
+    58:74:8b:ca:e2:56:f2:48:96:c2:a9:ad:93:40:d3:
+    c8:39:26:52:da:8e:d7:34:6d
+prime2:
+    00:ca:e1:55:c9:b3:a4:54:6b:5f:c3:cf:4c:c8:0d:
+    53:9d:53:1c:40:6b:ac:5e:d8:28:18:e9:77:b4:96:
+    f9:f6:14:ce:fb:11:79:e3:bf:bf:ab:22:bc:a7:f8:
+    8e:bb:8c:9b:13:27:ae:70:11:32:42:df:f0:86:63:
+    70:b6:c7:67:82:db:d5:0d:be:1f:ee:9b:33:16:b9:
+    aa:c7:ba:bb:7c:fa:0a:9e:f2:6c:3c:97:6c:f6:2d:
+    a8:f4:1e:fe:06:54:58:dc:7c:1c:bc:a7:8f:b1:cb:
+    4f:f7:aa:50:d1:16:ce:16:40:95:6a:4e:89:ea:df:
+    52:93:fa:a1:3a:23:49:f4:21
+exponent1:
+    00:bc:3b:93:32:4e:6d:92:ee:78:83:aa:36:66:24:
+    f2:8a:bf:46:1e:d3:b0:be:2c:f7:f8:05:15:89:39:
+    f8:15:d2:0c:07:58:3e:52:c6:dc:a8:dd:d5:fb:2c:
+    1e:e5:ac:94:74:a1:47:6c:d1:6a:cf:dd:b1:e2:4e:
+    ea:2f:20:49:39:ba:1c:58:06:8b:2d:34:2f:c4:16:
+    9d:48:4d:36:45:1b:c7:b8:2f:30:61:76:d5:3f:c7:
+    18:09:a5:a2:5b:32:02:77:32:0d:ac:3d:94:9d:50:
+    4d:d9:90:71:64:ec:3e:f7:bd:1b:b4:de:a8:21:60:
+    a7:c4:e3:aa:2a:de:e8:8a:9d
+exponent2:
+    29:15:e9:21:a7:d7:a7:a0:f7:0b:d8:77:5c:2c:16:
+    ba:cd:91:f3:19:db:16:79:ff:e4:cb:a3:0a:57:68:
+    d7:84:ef:45:b9:0c:4e:2b:0e:cd:c1:83:23:21:1b:
+    06:b0:3a:d7:6e:39:cd:48:2e:3d:8c:cc:50:ea:e2:
+    70:a1:81:3c:e6:f8:06:88:72:3f:07:ff:18:a3:11:
+    0a:d1:ae:16:69:2c:ad:73:ba:a7:aa:a2:ce:58:00:
+    d7:2f:4f:92:48:92:96:54:2c:1d:a8:71:59:38:2b:
+    41:a4:a4:29:33:cd:18:84:8b:bd:b3:9a:0a:8e:9f:
+    52:88:77:0e:27:07:5b:01
+coefficient:
+    3a:b4:e3:b8:41:ab:23:45:15:bf:0a:8d:2e:40:fb:
+    6e:95:38:97:02:d8:34:47:4e:9a:d8:49:12:4d:c6:
+    c1:d3:42:73:8d:4e:75:10:26:5d:f6:b7:44:eb:aa:
+    4a:88:a7:99:53:46:be:ef:04:7d:b0:24:ce:8b:2a:
+    4e:39:23:b0:56:63:89:94:8a:b0:bb:b0:31:87:97:
+    70:da:14:f4:41:8a:eb:75:ae:98:34:91:22:a2:d9:
+    53:51:17:b0:5b:ef:93:8a:12:11:a3:be:6e:88:29:
+    57:bc:2a:5f:1d:e5:ca:50:c2:6f:42:ee:0a:38:3a:
+    2a:2b:63:40:d5:2e:1a:36
+```
+Fields here are the same as in the ASN.1 structure, but in this representation, the specific values of the key components are presented more clearly. Compare these two representations and ensure that the field values match.
+
+Interesting fact: try to explore the historical reasons for choosing 65537 as the commonly accepted public exponent (see the `publicExponent` section).
