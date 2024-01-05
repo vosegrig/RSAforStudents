@@ -341,6 +341,61 @@ coefficient:
     57:bc:2a:5f:1d:e5:ca:50:c2:6f:42:ee:0a:38:3a:
     2a:2b:63:40:d5:2e:1a:36
 ```
+
+## PKCS #8 vs PKCS #1
+The first version of the PKCS standard (PKCS #1) was specifically designed for RSA keys. Its ASN.1 definition can be found in RFC 8017 ("PKCS #1: RSA Cryptography Specifications Version 2.2").
 Fields here are the same as in the ASN.1 structure, but in this representation, the specific values of the key components are presented more clearly. Compare these two representations and ensure that the field values match.
 
 Interesting fact: try to explore the historical reasons for choosing 65537 as the commonly accepted public exponent (see the `publicExponent` section).
+```
+RSAPublicKey ::= SEQUENCE {
+    modulus           INTEGER,  -- n
+    publicExponent    INTEGER   -- e
+}
+
+RSAPrivateKey ::= SEQUENCE {
+    version           Version,
+    modulus           INTEGER,  -- n
+    publicExponent    INTEGER,  -- e
+    privateExponent   INTEGER,  -- d
+    prime1            INTEGER,  -- p
+    prime2            INTEGER,  -- q
+    exponent1         INTEGER,  -- d mod (p-1)
+    exponent2         INTEGER,  -- d mod (q-1)
+    coefficient       INTEGER,  -- (inverse of q) mod p
+    otherPrimeInfos   OtherPrimeInfos OPTIONAL
+}
+```
+Subsequently, with the emergence of new algorithms, there arose a need to describe their types. As a result, the PKCS #8 standard was developed. It enables the representation of various key types and defines a specific field for the algorithm identifier. Its ASN.1 specification can be found in RFC 5958 ("Asymmetric Key Packages").
+```
+OneAsymmetricKey ::= SEQUENCE {
+     version                   Version,
+     privateKeyAlgorithm       PrivateKeyAlgorithmIdentifier,
+     privateKey                PrivateKey,
+     attributes            [0] Attributes OPTIONAL,
+     ...,
+     [[2: publicKey        [1] PublicKey OPTIONAL ]],
+     ...
+   }
+
+PrivateKey ::= OCTET STRING
+                     -- Content varies based on type of key. The
+                     -- algorithm identifier dictates the format of
+                     -- the key.
+```
+The definition of the `PrivateKey` field for the RSA algorithm is similar to that used in PKCS #1.
+
+If PKCS #8 is used in PEM format, its header and footer have the following structure (with the algorithm being determined inside the body according to the structure):
+
+```
+-----BEGIN PRIVATE KEY-----
+[...]
+-----END PRIVATE KEY-----
+```
+If PKCS #1 is used, external identification of the algorithm is required. Therefore, the header and footer have the following structure:
+```
+-----BEGIN RSA PRIVATE KEY-----
+[...]
+-----END RSA PRIVATE KEY-----
+```
+Due to the structure of PKCS #8, we parsed the field with an offset of 22 earlier in the text (using the parameter -strparse). For parsing a PKCS #1 key in PEM format, the second step is not necessary.
